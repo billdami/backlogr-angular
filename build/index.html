@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" data-framework="angularjs" ng-app="backlogr" class="app">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="description" content="An experimental angular.js app for managing your video game library and backlog">
+    <meta name="keywords" content="backlog, video games, angular.js">
+    <meta name="author" content="Bill Dami">
+    <title>backlogr</title>
+    <link rel="stylesheet" href="css/backlogr.css">
+  </head>
+  <body class="app animated">
+    <div class="app-root" ng-controller="AppController as appCtrl">
+      <div 
+        class="app-drawer app-drawer-left sidebar" 
+        ng-include="'includes/sidebar.html'" 
+        ng-controller="SidebarController as sidebarCtrl">
+      </div>
+      <div 
+        class="app-content-pane" 
+        ng-class="{'is-open-left':appCtrl.leftNavIsOpen}">
+        <div ui-view></div>
+      </div>
+      <div 
+        class="app-content-pane-mask" 
+        ng-show="appCtrl.leftNavIsOpen" 
+        ng-click="appCtrl.toggleLeftNav()">
+      </div>
+      <toast-notifications></toast-notifications>
+      <div class="app-loading-mask" ng-hide="appCtrl.isLoaded">
+        <span class="app-loading-spinner">
+          <i></i><i></i><i></i><i></i>
+        </span>
+      </div>
+    </div>
+    <script src="js/vendor.js"></script>
+    <script src="js/backlogr.js"></script>
+    <script src="js/templates.js"></script>
+  </body>
+</html>

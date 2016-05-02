@@ -9,6 +9,7 @@ var htmlmin = require('gulp-htmlmin');
 var templateCache = require('gulp-angular-templatecache');
 var browserSync = require('browser-sync').create();
 var env = gutil.env.env || 'development';
+var buildDir = (env === 'production') ? 'build' : 'dist';
 
 var vendorJsFiles = [
   './node_modules/angular/angular.js',
@@ -41,7 +42,7 @@ gulp.task('build-app-js', function() {
     .pipe(plumber())
     .pipe(env === 'production' ? uglify() : gutil.noop())
     .pipe(concat('backlogr.js'))
-    .pipe(gulp.dest('./dist/js/'));
+    .pipe(gulp.dest('./' + buildDir + '/js/'));
 });
 
 // Build a javascript bundle of all vendor js files
@@ -50,7 +51,7 @@ gulp.task('build-vendor-js', function() {
     .pipe(plumber())
     .pipe(env === 'production' ? uglify() : gutil.noop())
     .pipe(concat('vendor.js'))
-    .pipe(gulp.dest('./dist/js/'));
+    .pipe(gulp.dest('./' + buildDir + '/js/'));
 });
 
 // preload templates into $templateCache
@@ -59,7 +60,7 @@ gulp.task('populate-template-cache', function() {
     .pipe(plumber())
     .pipe(htmlmin({collapseWhitespace: true, conservativeCollapse: true}))
     .pipe(templateCache('templates.js', {module: 'backlogr'}))
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest(buildDir + '/js'));
 });
 
 // runs sass
@@ -77,14 +78,14 @@ gulp.task('build-css', function() {
   return gulp.src('./app/styles/*')
     .pipe(handledSass)
     .pipe(autoprefixer({browsers: supportedBrowsers}))
-    .pipe(gulp.dest('./dist/css'));
+    .pipe(gulp.dest('./' + buildDir + '/css'));
 });
 
 // copy static assets
 gulp.task('copy-static-assets', function() {
   return gulp.src('./public/**/*')
     .pipe(plumber())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest(buildDir));
 });
 
 // full build
@@ -92,7 +93,7 @@ gulp.task('build', ['populate-template-cache', 'build-vendor-js', 'build-app-js'
   //TODO cache busting/fingerprinting of files/modify index.html src paths
   return gulp.src('./app/index.html')
     .pipe(plumber())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest(buildDir));
 });
 
 gulp.task('watch', function() {
@@ -108,9 +109,9 @@ gulp.task('watch', function() {
 // launches a web server that serves files in the current directory
 gulp.task('serve',  ['build', 'watch'], function() {
   browserSync.init({
-    files: ["./dist/*"],
+    files: ["./" + buildDir + "/*"],
     server: {
-      baseDir: "./dist",
+      baseDir: "./" + buildDir,
     }
   });
 });
