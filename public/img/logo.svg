@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="144px" height="24px" viewBox="0 0 144 24" enable-background="new 0 0 144 24" xml:space="preserve">
+<rect x="2" y="2" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" width="4" height="20"/>
+<rect x="8" y="2" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" width="4" height="20"/>
+<rect x="14" y="2" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" width="4" height="20"/>
+<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="28.325,21.304 24.129,22 19,2.696 23.195,2 "/>
+<g>
+	<rect x="34.827" y="6.38" fill-rule="evenodd" clip-rule="evenodd" fill="none" width="107.103" height="11.24"/>
+	<path fill="#FFFFFF" d="M47.051,15.979h-1.6v1.616h-9.6V6.38h9.6v1.616h1.6v3.184l-1.6,0.016v1.344h1.6V15.979z M43.834,11.18
+		V7.996h-4.8v3.2L43.834,11.18z M43.834,15.979v-3.44h-4.8v3.44H43.834z"/>
+	<path fill="#FFFFFF" d="M60.299,17.596h-3.216v-3.2h-4.672v3.2h-3.312V9.563h1.584V7.996h1.6V6.38h4.8v1.616h1.616v1.568h1.6
+		V17.596z M57.083,12.78V9.563h-1.568V7.996h-1.616v1.568h-1.488v3.216H57.083z"/>
+	<path fill="#FFFFFF" d="M73.531,15.979h-1.6v1.616h-6.4v-1.616l-1.608-0.016v-1.552h-1.576V9.563h1.576V7.996h1.608V6.38h6.4v1.616
+		h1.6v1.568h-3.216V7.996h-3.184v1.568h-1.6v4.848h1.6v1.568l3.184-0.016v-1.552h3.216V15.979z"/>
+	<path fill="#FFFFFF" d="M86.779,17.596h-4.784v-1.616h-1.6v-1.568h-1.616v3.184h-3.184V6.38h3.184v4.8l1.616,0.048V9.563h1.6V7.996
+		h1.584V6.38h3.2v1.616h-1.6v1.568h-1.6v1.664l-1.584-0.048v1.6h1.584v1.632h1.6v1.568h1.6V17.596z"/>
+	<path fill="#FFFFFF" d="M100.027,17.596h-11.2V6.38h3.184v9.6h8.016V17.596z"/>
+	<path fill="#FFFFFF" d="M113.291,15.979h-1.6v1.616h-8.016v-1.616h-1.584V7.996h1.584V6.38h8.016v1.616h1.6V15.979z
+		 M110.075,15.979V7.996h-4.8v7.984H110.075z"/>
+	<path fill="#FFFFFF" d="M126.523,17.596h-8v-1.616h-1.608v-1.568h-1.576V9.563h1.576V7.996h1.608V6.38h8v1.616h-6.4v1.568h-1.6
+		v4.848h1.6v1.568h3.185v-3.2h-1.568v-1.584h4.784V17.596z"/>
+	<path fill="#FFFFFF" d="M139.787,17.596h-4.8v-1.616h-1.6v-1.568l-1.616-0.016v3.2h-3.184V6.38h9.6v1.616h1.6v4.8h-3.216v1.616
+		h1.616v1.568h1.6V17.596z M136.571,11.207V7.996h-4.8v4.8h3.216v-1.589H136.571z"/>
+</g>
+</svg>

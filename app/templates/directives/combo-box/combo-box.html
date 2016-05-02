@@ -1,0 +1,24 @@
+<div class="combo-box" ng-class="{open: cb.isOpen}">
+  <input 
+    type="text" 
+    class="form-control combo-box-input" 
+    placeholder="{{ cb.placeholder }}" 
+    ng-change="cb.onInputChange()" 
+    ng-keydown="cb.onInputKeyDown($event)"
+    ng-model="cb.inputValue" 
+    combo-box-input>
+  <combo-box-menu>
+    <button 
+      type="button" 
+      ng-repeat="item in cb.items" 
+      model="item" 
+      class="combo-box-item list-group-item" 
+      ng-class="{active: item === cb.selectedItem, focused: item === cb.focusedItem}" 
+      ng-click="cb.onItemClick(item)"
+      combo-box-item>
+    </button>
+    <div class="combo-box-no-results list-group-item text-muted" ng-if="!cb.items || cb.items.length < 1">
+      {{ cb.isLoading ? cb.loadingText : cb.emptyText }}
+    </div>
+  </combo-box-menu>
+</div>

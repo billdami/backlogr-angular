@@ -1,0 +1,30 @@
+//suppress automatic menu indicator caret icon
+.dropdown-toggle::after {
+  display: none;
+}
+
+.uib-dropdown-open .dropdown-menu.animated {
+  @extend .flip-in-x;
+}
+
+.uib-dropdown-open-remove .dropdown-menu.animated {
+  display: block !important;
+  @extend .flip-out-x;
+}
+
+.dropdown-menu-fs {
+  padding: 0;
+}
+
+//fullscreen dropdowns for mobile
+@media(max-width: $screen-sm-max) {
+  .dropdown-menu-fs {
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+}

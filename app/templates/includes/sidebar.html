@@ -1,0 +1,93 @@
+<nav class="navbar navbar-full navbar-dark sidebar-nav">
+  <a ng-click="sidebarCtrl.closeNavAndGo('games.list', {cat:'library'})" href="" class="navbar-brand">
+    <img src="/img/logo.svg" alt="backlogr">
+  </a>
+  <div 
+    class="pull-xs-right" 
+    ng-controller="AddGameFormController as addGameFormCtrl"
+    ng-class="{open: addGameFormCtrl.dropdownIsOpen}"
+    uib-dropdown 
+    dropdown-append-to-body 
+    is-open="addGameFormCtrl.dropdownIsOpen"
+    auto-close="outsideClick">
+    <button type="button" class="btn sidebar-btn" title="Add game" uib-dropdown-toggle>
+      <i class="fa fa-plus"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-fs animated fast" role="menu" uib-dropdown-menu>
+      <form 
+        name="addGameFormCtrl.form"
+        class="dropdown-form add-game-form" 
+        ng-include="'includes/add-game-form.html'" 
+        ng-submit="addGameFormCtrl.onSubmit()"
+        novalidate>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="sidebar-content scrollable scrollable-dark">
+  <div class="list-group sidebar-list-group">
+    <a 
+      ng-click="sidebarCtrl.closeNavAndGo('games.list', {cat:'library'})"  
+      ng-class="sidebarCtrl.categoryCls('library')" 
+      class="list-group-item sidebar-list-group-item"
+      href="">
+      <span class="label label-primary sidebar-label pull-xs-right">
+        {{ sidebarCtrl.categoryCounts.library | number:0 }}
+      </span>
+      <i class="fa fa-fw fa-university"></i> My Library
+    </a>
+    <a 
+      ng-click="sidebarCtrl.closeNavAndGo('games.list', {cat:'backlog'})" 
+      ng-class="sidebarCtrl.categoryCls('backlog')" 
+      class="list-group-item sidebar-list-group-item"
+      href="">
+      <span class="label label-primary sidebar-label pull-xs-right">
+        {{ sidebarCtrl.categoryCounts.backlog | number:0 }}
+      </span>
+      <i class="fa fa-fw fa-inbox"></i> Backlog
+    </a>
+    <a 
+      ng-click="sidebarCtrl.closeNavAndGo('games.list', {cat:'completed'})"
+      ng-class="sidebarCtrl.categoryCls('completed')" 
+      class="list-group-item sidebar-list-group-item"
+      href="">
+      <span class="label label-primary sidebar-label pull-xs-right">
+        {{ sidebarCtrl.categoryCounts.completed | number:0 }}
+      </span>
+      <i class="fa fa-fw fa-check"></i> Completed
+    </a>
+    <a 
+      ng-click="sidebarCtrl.closeNavAndGo('games.list', {cat:'wishlist'})" 
+      ng-class="sidebarCtrl.categoryCls('wishlist')" 
+      class="list-group-item sidebar-list-group-item"
+      href="">
+      <span class="label label-primary sidebar-label pull-xs-right">
+        {{ sidebarCtrl.categoryCounts.wishlist | number:0 }}
+      </span>
+      <i class="fa fa-fw fa-gift"></i> Wishlist
+    </a>
+    <a 
+      ng-click="sidebarCtrl.closeNavAndGo('games.list', {cat:'starred'})" 
+      ng-class="sidebarCtrl.categoryCls('starred')" 
+      class="list-group-item sidebar-list-group-item"
+      href="">
+      <span class="label label-primary sidebar-label pull-xs-right">
+        {{ sidebarCtrl.categoryCounts.starred | number:0 }}
+      </span>
+      <i class="fa fa-fw fa-star"></i> Starred
+    </a>
+  </div>
+</div>
+<div class="sidebar-toolbar">
+  <a 
+    href="https://github.com/billdami/backlogr-angular" 
+    title="View it on GitHub"
+    class="sidebar-link pull-xs-right">
+    <i class="fa fa-github"></i>
+  </a>
+  <small>
+    <a class="sidebar-link" href="" ng-click="sidebarCtrl.closeNavAndGo('about')">About</a>
+    &nbsp;&bull;&nbsp;
+    <a class="sidebar-link" href="http://billdami.com">billdami.com</a>
+  </small>
+</div>

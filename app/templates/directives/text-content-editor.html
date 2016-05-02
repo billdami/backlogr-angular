@@ -1,0 +1,13 @@
+<p class="text-content-editor-content" ng-hide="isEditing" ng-click="onContentClick()">
+  <span ng-bind-html="content | nl2br"></span>
+  <span class="text-muted" ng-hide="content.length">{{ placeholder }}</span>
+</p>
+<div class="form-group" ng-hide="!isEditing">
+  <textarea 
+    class="form-control scrollable text-content-editor-textarea" 
+    ng-model="content" 
+    ng-model-options="{debounce: 300}"
+    ng-change="onContentChange()"
+    focus-when="focusTextarea">
+  </textarea>
+</div>

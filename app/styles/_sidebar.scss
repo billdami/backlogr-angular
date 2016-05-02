@@ -1,0 +1,69 @@
+.sidebar {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  background: $sidebar-bg;
+  color: $sidebar-color;
+}
+
+.sidebar-nav {
+  background-color: $sidebar-header-bg;
+  border-bottom: 1px solid darken($sidebar-header-bg, 2%);
+}
+
+.sidebar-content {
+  flex: 1;
+  padding: 10px 0 0 0;
+}
+
+.sidebar-list-group-item,
+a.sidebar-list-group-item,
+button.sidebar-list-group-item {
+  border: 0;
+  background-color: transparent;
+  color: $sidebar-color;
+
+  &:focus, &:hover {
+    color: lighten($sidebar-color, 5%);
+    background-color: lighten($sidebar-bg, 2%);
+  }
+
+  &.active, &.active:focus, &.active:hover {
+    color: #fff;
+    background-color: lighten($sidebar-bg, 5%);
+  }
+
+  &:first-child, &:last-child {
+    border-radius: 0;
+  }
+}
+
+.sidebar-toolbar {
+  padding: 6px 10px;
+  border-top: 1px solid darken($sidebar-header-bg, 2%);
+}
+
+.sidebar-link {
+  color: $sidebar-color;
+
+  &:focus, &:hover {
+    color: lighten($sidebar-color, 5%);
+  }
+
+  &:active {
+    color: #fff;
+  }
+}
+
+.sidebar-btn {
+  @include button-variant(#fff, lighten($sidebar-header-bg, 5%), darken($sidebar-bg, 5%));
+}
+
+.sidebar-label {
+  min-width: 33px;
+  @include label-variant(lighten($sidebar-bg, 6%));
+
+  .active & {
+    background-color: lighten($sidebar-bg, 11%);
+  }
+}

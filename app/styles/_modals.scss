@@ -1,0 +1,32 @@
+.modal-ct  {
+  &.ng-enter {
+    .modal {
+      @extend .fade-in-down-big;
+    }
+
+    .modal-backdrop {
+      animation-name: backdropFadeIn;
+    }
+  }
+
+  &.ng-leave {
+    .modal {
+      @extend .fade-out-up-big;
+    }
+
+    .modal-backdrop {
+      animation-name: backdropFadeOut;
+    }
+  }
+}
+
+//fade backdrop from semi-transparency
+@keyframes backdropFadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.5; }
+}
+
+@keyframes backdropFadeOut {
+  from { opacity: 0.5; }
+  to { opacity: 0; }
+}

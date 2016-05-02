@@ -1,0 +1,200 @@
+<nav class="navbar navbar-full navbar-light main-nav">
+  <div class="btn-toolbar">
+    <div class="btn-group hidden-lg-up">
+      <button type="button" class="btn btn-secondary" ng-click="appCtrl.toggleLeftNav()">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    <div class="btn-group hidden-md-down">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="Back to list" 
+        ng-click="gameCtrl.backToList()">
+        <i class="fa fa-fw fa-arrow-left"></i>
+      </button>
+    </div>
+    <div class="btn-group hidden-md-down">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="Mark as completed" 
+        ng-click="gameCtrl.markCompleted()" 
+        ng-if="!gameCtrl.game.completed">
+        <i class="fa fa-fw fa-check"></i>
+      </button>
+      <button 
+        class="btn btn-secondary" 
+        type="button" 
+        title="Move to backlog" 
+        ng-click="gameCtrl.moveToBacklog()" 
+        ng-if="gameCtrl.game.completed">
+        <i class="fa fa-fw fa-inbox"></i>
+      </button>
+    </div>
+    <div class="btn-group hidden-md-down">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="Move to library" 
+        ng-click="gameCtrl.moveToLibrary()" 
+        ng-if="gameCtrl.game.wishlisted">
+        <i class="fa fa-fw fa-university"></i>
+      </button>
+      <button 
+        class="btn btn-secondary" 
+        type="button" 
+        title="Move to wishlist" 
+        ng-click="gameCtrl.moveToWishlist()" 
+        ng-if="!gameCtrl.game.wishlisted">
+        <i class="fa fa-fw fa-gift"></i>
+      </button>
+    </div>
+    <div class="btn-group hidden-md-down">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="Delete" 
+        ng-click="gameCtrl.remove()">
+        <i class="fa fa-fw fa-trash"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="app-content has-sidebar scrollable">
+  <div class="clearfix">
+    <div class="page-header" ng-class="{'page-header-has-img': gameCtrl.game.hasImg}">
+      <div class="page-header-img-ct" ng-if="gameCtrl.game.hasImg">
+        <img ng-src="{{ gameCtrl.gamesService.getThumbUrl(gameCtrl.game) }}" class="page-header-img">
+      </div>
+      <div class="page-header-text">
+        <h1 class="page-header-title">
+          {{ gameCtrl.game.gameName }}
+          <star-button active="gameCtrl.game.starred" on-change="gameCtrl.onStarToggle({active: active})"></star-button>
+        </h1>
+        <h3 class="page-header-subtitle">{{ gameCtrl.game.platformName }}</h3>
+      </div>
+    </div>
+    <p class="page-content" ng-show="gameCtrl.gbGame.deck">{{ gameCtrl.gbGame.deck }}</p>
+  </div>
+  <div class="page-sidebar">
+    <div class="card">
+      <div class="card-header">Game Information</div>
+      <div class="card-block">
+        <div class="row">
+          <div class="col-xl-6 col-md-3 col-sm-4 text-sm-right">
+            <strong>Release date</strong>
+          </div>
+          <div class="col-xl-6 col-md-9 col-sm-8">
+            {{ gameCtrl.game.releaseDate ? (gameCtrl.game.releaseDate | date:'MMMM d, y') : '---' }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-3 col-sm-4 text-sm-right">
+            <strong>Added</strong>
+          </div>
+          <div class="col-xl-6 col-md-9 col-sm-8">
+            {{ gameCtrl.game.createdDate ? (gameCtrl.game.createdDate | date:'MMMM d, y') : '---' }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-3 col-sm-4 text-sm-right">
+            <strong>Completed</strong>
+          </div>
+          <div class="col-xl-6 col-md-9 col-sm-8">
+            {{ gameCtrl.game.completedDate ? (gameCtrl.game.completedDate | date:'MMMM d, y') : '---' }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-3 col-sm-4 text-sm-right">
+            <strong>Genres</strong>
+          </div>
+          <div class="col-xl-6 col-md-9 col-sm-8">
+            <div ng-repeat="genre in gameCtrl.gbGame.genreModels">{{ genre.name }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-header">Links</div>
+      <div class="list-group list-group-flush">
+        <a ng-href="{{ gameCtrl.amazonUrl }}" target="_blank" class="list-group-item">
+          <i class="fa fa-fw fa-amazon"></i> Buy it on Amazon
+        </a>
+        <a ng-href="{{ gameCtrl.gbGame.siteDetailUrl }}" target="_blank" class="list-group-item">
+          <i class="fa fa-fw fa-bomb"></i> GiantBomb wiki page
+        </a>
+        <a ng-href="{{ gameCtrl.metacriticUrl }}" target="_blank" class="list-group-item">
+          <i class="fa fa-fw fa-trophy"></i> Metacritic reviews
+        </a>
+        <a ng-href="{{ gameCtrl.gamefaqsUrl }}" target="_blank" class="list-group-item">
+          <i class="fa fa-fw fa-question-circle"></i> FAQs &amp; guides
+        </a>
+      </div>
+    </div>
+  </div>
+  <h5 class="page-sub-header">My Notes</h5>
+  <div class="page-content">
+    <text-content-editor 
+      content="gameCtrl.game.notes" 
+      placeholder="Jot down notes about the game here..." 
+      on-change="gameCtrl.onNotesUpdate({content: content})">
+    </text-content-editor>
+  </div>
+</div>
+<nav class="navbar navbar-full navbar-light main-nav bottom hidden-lg-up">
+  <div class="btn-toolbar">
+    <div class="btn-group">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="Back to list" 
+        ng-click="gameCtrl.backToList()">
+        <i class="fa fa-fw fa-arrow-left"></i>
+      </button>
+    </div>
+    <div class="btn-group">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="Mark as completed" 
+        ng-click="gameCtrl.markCompleted()" 
+        ng-if="!gameCtrl.game.completed">
+        <i class="fa fa-fw fa-check"></i>
+      </button>
+      <button 
+        class="btn btn-secondary" 
+        type="button" 
+        title="Move to backlog" 
+        ng-click="gameCtrl.moveToBacklog()" 
+        ng-if="gameCtrl.game.completed">
+        <i class="fa fa-fw fa-inbox"></i>
+      </button>
+    </div>
+    <div class="btn-group">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="Move to library" 
+        ng-click="gameCtrl.moveToLibrary()" 
+        ng-if="gameCtrl.game.wishlisted">
+        <i class="fa fa-fw fa-university"></i>
+      </button>
+      <button 
+        class="btn btn-secondary" 
+        type="button" 
+        title="Move to wishlist" 
+        ng-click="gameCtrl.moveToWishlist()" 
+        ng-if="!gameCtrl.game.wishlisted">
+        <i class="fa fa-fw fa-gift"></i>
+      </button>
+    </div>
+    <div class="btn-group">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="Delete" 
+        ng-click="gameCtrl.remove()">
+        <i class="fa fa-fw fa-trash"></i>
+      </button>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,78 @@
+$toast-zindex: 999999;
+$toast-color: #fff;
+$toast-default-bg: #333;
+
+@mixin toast-variant($bg-color) {
+  background-color: fade-out($bg-color, 0.1);
+
+  &:hover {
+    background-color: $bg-color;
+  }
+}
+
+.toasts {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  z-index: $toast-zindex;
+}
+
+.toast-item {
+  position: relative;
+  overflow: hidden;
+  width: 280px;
+  margin-top: 10px;
+  padding: 10px;
+  color: $toast-color;
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
+  
+  &.close-on-click {
+    cursor: pointer;
+  }
+
+  &.has-media {
+    padding-left: 45px;
+  }
+  
+  &.default {
+    @include toast-variant($toast-default-bg);
+  }
+  
+  &.success {
+    @include toast-variant($state-success-text);
+  }
+
+  &.danger {
+    @include toast-variant($state-danger-text);
+  }
+
+  &.warning {
+    @include toast-variant($state-warning-text);
+  }
+
+  &.info {
+    @include toast-variant($state-info-text);
+  }
+
+  &-ct {
+    padding-right: 20px;
+  }
+
+  &-text {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+  }
+}
+
+.toast-icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  bottom: 0;
+  margin-top: -14px;
+  width: 45px;
+  text-align: center;
+  color: $toast-color;
+  font-size: 28px;
+}

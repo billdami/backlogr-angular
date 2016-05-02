@@ -1,0 +1,52 @@
+<div class="dropdown-form-heading">
+  <button type="submit" class="btn btn-sm btn-primary dropdown-form-heading-btn pull-xs-right" ng-disabled="!addGameFormCtrl.formIsValid()">Add</button>
+  <button type="button" class="btn btn-sm btn-secondary dropdown-form-heading-btn pull-xs-left" ng-click="addGameFormCtrl.closeDropDown()">Cancel</button>
+  <div class="dropdown-form-heading-text">Add Game</div>
+</div>
+<div class="form-group select-form-group">
+  <select 
+    name="platform" 
+    class="form-control" 
+    focus-when="addGameFormCtrl.focusPlatformSelect"
+    ng-model="addGameFormCtrl.platform" 
+    ng-change="addGameFormCtrl.onPlatformChange()" 
+    ng-disabled="addGameFormCtrl.platformsLoading" 
+    required>
+    <option value="">
+      {{addGameFormCtrl.platformsLoading ? 'Loading, please wait...' : 'Select a platform...'}}
+    </option>
+    <optgroup ng-repeat="group in addGameFormCtrl.filteredPlatformGroups" label="{{group.label}}">
+      <option 
+        ng-repeat="platform in addGameFormCtrl.filteredPlatforms | filter: {group: group.id} | orderBy: 'name'" 
+        value="{{platform._id}}">
+        {{platform.name}}
+      </option>
+    </optgroup>
+  </select>
+</div>
+<div class="form-group">
+  <combo-box
+    model="addGameFormCtrl.game"
+    items="addGameFormCtrl.gbGames"
+    model-label="name"
+    model-img-url="thumbImgUrl"
+    placeholder="Search for a title..." 
+    empty-text="No games found"
+    is-loading="addGameFormCtrl.searchIsLoading"
+    on-select="addGameFormCtrl.onSelectGame({item: item})"
+    on-clear-selection="addGameFormCtrl.onClearGameSelection()"
+    on-input="addGameFormCtrl.searchGames({term: term})" 
+    debounce="300"
+    show-images="true">
+  </combo-box>
+</div>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" name="completed" ng-model="addGameFormCtrl.completed"> Completed
+  </label>
+</div>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" name="completed" ng-model="addGameFormCtrl.wishlisted"> Wishlist
+  </label>
+</div>

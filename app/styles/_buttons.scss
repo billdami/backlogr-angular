@@ -1,0 +1,48 @@
+.btn:focus, 
+.btn.focus, 
+.btn:active:focus, 
+.btn:active.focus, 
+.btn.active:focus, 
+.btn.active.focus,
+a:focus {
+  outline: none;
+}
+
+.btn {
+  //give buttons some dimensionality
+  box-shadow: inset 0 .1em 0 rgba(255,255,255,0.1), inset 0 -.15em 0 rgba(0,0,0,0.2);
+
+  &:disabled,
+  &.disabled {
+    box-shadow: none;
+  }
+
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  }
+}
+
+.btn-secondary {
+  //pull back the 3D effect a bit for the default white buttons
+  box-shadow: inset 0 .1em 0 rgba(255,255,255,0.1), inset 0 -.15em 0 rgba(0,0,0,0.1);
+}
+
+.star-button {
+  color: #ccc;
+  cursor: pointer;
+
+  &:hover {
+    color: darken(#ccc, 10%);
+  }
+
+  &.fa-star {
+    color: #ffd76e;
+    -webkit-text-stroke: 1px desaturate(darken(#ffd76e, 20%), 10%);
+
+    &:hover {
+      text-shadow: 1px 1px 2px fade-out(#000, 0.8);
+    }
+  }
+}

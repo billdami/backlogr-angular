@@ -1,0 +1,89 @@
+<div class="app-content-pane-inner">
+  <nav class="navbar navbar-full navbar-light main-nav">
+    <div class="btn-toolbar">
+      <div class="btn-group hidden-lg-up">
+        <button type="button" class="btn btn-secondary" ng-click="appCtrl.toggleLeftNav()">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+      <div class="btn-group hidden-md-down">
+        <a class="btn btn-secondary" title="Go back" ui-sref="games.list({cat: 'library'})">
+          <i class="fa fa-fw fa-arrow-left"></i>
+        </a>
+      </div>
+      <div class="btn-group hidden-md-down">
+        <a class="btn btn-secondary" href="https://github.com/billdami/backlogr-angular">
+          <i class="fa fa-fw fa-github"></i> View it on GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="app-content scrollable">
+    <div class="page-header">
+      <h1 class="page-header-title">About</h1>
+    </div>
+    <div class="page-content page-text-content">
+      <p>
+        backlogr is an experimental web app built with angular.js for tracking and managing your 
+      video game collection and backlog. At this point in time, it is <strong>not meant to be a 
+      production-ready application</strong> for use by the general population. With this in mind, 
+      please do not rely on it to be a stable location for storing your games, as it could change 
+      or be taken down at any time, with no warning.
+      </p>
+      <p>
+        I built this app mainly as a way to get my feet wet with using angular.js, and to explore its
+        strengths and weaknesses when used to create slightly more complex web applications. As a an
+        avid gamer, I thought that an app for tracking your game backlog would be a perfect test and
+        would fit nicely as a traditional "CRUD" type application. To make the app more useful, and 
+        to make it come alive a bit more, I've connected it to the excellent 
+        <a href="http://www.giantbomb.com/api/" target="_blank">GiantBomb API</a> and games database.
+        The app makes requests to a custom node.js based REST API that I developed, which serves a 
+        cached version of GiantBomb's data from a MongoDB database, which makes searching it from the
+        app even faster and easier, and allows things like the game box art to be incorporated into 
+        the interface.
+      </p>
+      <h5>Key components &amp; features</h5>
+      <ul>
+        <li>
+          Backed by the <a href="http://www.giantbomb.com/api/" target="_blank">GiantBomb games database</a>, 
+          cached to a MongoDB database and served from a custom node.js API
+        </li>
+        <li>Stores the user's games and configuration data in browser localStorage</li>
+        <li>
+          Fully responsive and mobile friendly user interface (built on top of 
+          <a href="http://v4-alpha.getbootstrap.com/" target="_blank">Bootstrap v4 alpha</a>,
+          and uses <a href="https://github.com/ftlabs/fastclick" target="_blank">fastclick</a> 
+          for lag-free touch interaction)
+        </li>
+        <li>
+          Uses <a href="https://github.com/angular-ui/ui-router" target="_blank">ui-router</a> 
+          for page/view routing with URL support
+        </li>
+        <li>Custom built combo-box/auto-complete widget directive (for searching the games database)</li>
+        <li>Custom built toast notifications directive</li>
+        <li>
+          CSS3 Animations with 
+          <a href="https://docs.angularjs.org/api/ngAnimate" target="_blank">ngAnimate</a>
+          (for modals, dropdowns, notifications, list items)
+        </li>
+        <li>Keyboard control support with
+          <a href="https://github.com/chieffancypants/angular-hotkeys" target="_blank">angular-hotkeys</a>
+        </li>
+      </ul>
+      <h5>About the creator</h5>
+      <p>
+        I am a web developer based in Orange County, New York. I have a passion for front-end 
+        development, and much of my time is spent crafting pixel perfect UIs and intuitive user 
+        experiences. For more information about me, and to see more of my work, check out my personal
+        website, <a href="http://billdami.com">billdami.com</a>.
+      </p>
+      <h5>License</h5>
+      <p>
+        This software is not licensed, meaning default US copyright laws apply. All rights to the 
+        source code are retained by Bill Dami, and it may not be reproduced, distributed, or
+        recreated as derivative works.
+      </p>
+      <p><small class="text-muted">&copy; 2016 Bill Dami.</small></p>
+    </div>
+  </div>
+</div>

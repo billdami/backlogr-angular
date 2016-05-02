@@ -1,0 +1,222 @@
+<nav class="navbar navbar-full navbar-light main-nav">
+  <div class="btn-toolbar">
+    <div class="btn-group hidden-lg-up">
+      <button type="button" class="btn btn-secondary" ng-click="appCtrl.toggleLeftNav()">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    <div class="btn-group hidden-md-down">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="{{ gamesListCtrl.hasSelection ? 'Deselect all' : 'Select all' }}" 
+        ng-click="gamesListCtrl.toggleSelection()">
+        <i 
+          class="fa fa-fw"
+          ng-class="{
+            'fa-square-o': (gamesListCtrl.numSelected === 0), 
+            'fa-check-square-o': (gamesListCtrl.numSelected >= gamesListCtrl.games.length),
+            'fa-minus-square-o': (gamesListCtrl.numSelected > 0 && gamesListCtrl.numSelected < gamesListCtrl.games.length)
+          }"></i>
+        <span ng-show="gamesListCtrl.numSelected > 0">
+          {{ gamesListCtrl.numSelected | number:0 }} selected
+        </span>
+      </button>
+    </div>
+    <div class="btn-group hidden-md-down">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="Mark as completed" 
+        ng-if="gamesListCtrl.category != 'completed'"
+        ng-disabled="!gamesListCtrl.hasSelection" 
+        ng-click="gamesListCtrl.markSelectionCompleted()">
+        <i class="fa fa-fw fa-check"></i>
+      </button>
+      <button 
+        class="btn btn-secondary" 
+        type="button" 
+        title="Move to backlog" 
+        ng-if="gamesListCtrl.category != 'backlog'"
+        ng-disabled="!gamesListCtrl.hasSelection" 
+        ng-click="gamesListCtrl.moveSelectionToBacklog()">
+        <i class="fa fa-fw fa-inbox"></i>
+      </button>
+    </div>
+    <div class="btn-group hidden-md-down">
+      <button 
+        type="button"
+        class="btn btn-secondary"
+        title="Move to library"
+        ng-if="gamesListCtrl.category != 'library' && gamesListCtrl.category != 'backlog' && gamesListCtrl.category != 'completed'"
+        ng-disabled="!gamesListCtrl.hasSelection" 
+        ng-click="gamesListCtrl.moveSelectionToLibrary()">
+        <i class="fa fa-fw fa-university"></i>
+      </button>
+      <button 
+        class="btn btn-secondary"
+        type="button"
+        title="Move to wishlist"
+        ng-if="gamesListCtrl.category != 'wishlist'"
+        ng-disabled="!gamesListCtrl.hasSelection" 
+        ng-click="gamesListCtrl.moveSelectionToWishlist()">
+        <i class="fa fa-fw fa-gift"></i>
+      </button>
+    </div>
+    <div class="btn-group hidden-md-down">
+      <button 
+        type="button" 
+        class="btn btn-secondary"
+         title="Delete" 
+         ng-disabled="!gamesListCtrl.hasSelection"  
+         ng-click="gamesListCtrl.removeSelection()">
+        <i class="fa fa-fw fa-trash"></i>
+      </button>
+    </div>
+    <div class="btn-group hidden-md-down" uib-dropdown>
+      <button type="button" class="btn btn-secondary" ng-disabled="!gamesListCtrl.hasSelection" title="More action" uib-dropdown-toggle>
+        <i class="fa fa-fw fa-ellipsis-h"></i>
+      </button>
+      <div class="dropdown-menu" role="menu" uib-dropdown-menu>
+        <button class="dropdown-item" type="button" ng-disabled="!gamesListCtrl.hasSelection" ng-click="gamesListCtrl.starSelection()">
+          <i class="fa fa-fw fa-star"></i> Add star
+        </button>
+        <button class="dropdown-item" type="button" ng-disabled="!gamesListCtrl.hasSelection" ng-click="gamesListCtrl.unstarSelection()">
+          <i class="fa fa-fw fa-star-o"></i> Remove star
+        </button>
+      </div>
+    </div>
+    <div class="btn-group pull-xs-right" uib-dropdown>
+      <button type="button" class="btn btn-secondary" title="List options" uib-dropdown-toggle>
+        <i class="fa fa-cog"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" role="menu" uib-dropdown-menu>
+        <div class="dropdown-header">Sort by</div>
+        <button type="button" class="dropdown-item" ng-click="gamesListCtrl.updateSortProp('gameName')">
+          <i 
+            class="fa fa-fw" 
+            ng-class="{
+              'fa-dot-circle-o': (gamesListCtrl.gamesService.orderByProp == 'gameName'), 
+              'fa-circle-o': (gamesListCtrl.gamesService.orderByProp != 'gameName')
+            }"></i>
+          Game Title
+        </button>
+        <button type="button" class="dropdown-item" ng-click="gamesListCtrl.updateSortProp('platformName')">
+          <i 
+            class="fa fa-fw"
+            ng-class="{
+              'fa-dot-circle-o': (gamesListCtrl.gamesService.orderByProp == 'platformName'), 
+              'fa-circle-o': (gamesListCtrl.gamesService.orderByProp != 'platformName')
+            }"></i>
+          Platform
+        </button>
+        <button type="button" class="dropdown-item" ng-click="gamesListCtrl.updateSortProp('releaseDate')">
+          <i 
+            class="fa fa-fw" 
+            ng-class="{
+              'fa-dot-circle-o': (gamesListCtrl.gamesService.orderByProp == 'releaseDate'), 
+              'fa-circle-o': (gamesListCtrl.gamesService.orderByProp != 'releaseDate')
+            }"></i>
+          Release Date
+        </button>
+        <div class="dropdown-divider"></div>
+        <button type="button" class="dropdown-item" ng-click="gamesListCtrl.toggleSortDir()">
+          <i 
+            class="fa fa-fw" 
+            ng-class="{
+              'fa-sort-alpha-asc': !gamesListCtrl.gamesService.orderDesc, 
+              'fa-sort-alpha-desc': gamesListCtrl.gamesService.orderDesc
+            }"></i>
+          Toggle sort direction
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div 
+  class="app-content app-content-muted scrollable" 
+  init-scroll-top="gamesListCtrl.initScrollPos" 
+  on-scroll="gamesListCtrl.onListScroll({scrollTop: scrollTop})" 
+  track-scroll>
+  <div class="collection-list">
+    <div 
+      class="collection-list-item animate-exit animate-enter" 
+      ng-repeat="game in gamesListCtrl.games track by game.id"
+      ng-class="{selected: game.selected}"
+      ng-click="gamesListCtrl.onGameClick(game, $event)"
+      ng-dblclick="gamesListCtrl.openDetail(game)"
+      scroll-into-view="game.lastFocused">
+      <div class="collection-list-item-selection" ng-click="gamesListCtrl.onGameSelClick(game, $event)" stop-propagation>
+        <i class="fa fa-square-o collection-list-item-selection-icon"></i>
+      </div>
+      <div class="collection-list-item-thumb-ct">
+        <img ng-if="game.hasImg" ng-src="{{::gamesListCtrl.gamesService.getThumbUrl(game)}}" class="collection-list-item-thumb-img">
+      </div>
+      <div class="collection-list-item-info">
+        <div class="collection-list-item-text">
+          {{::game.gameName }}
+        </div>
+        <div class="text-muted collection-list-item-text">{{::game.platformName }}</div>
+      </div>
+      <span class="collection-list-item-ctrls">
+        <star-button active="game.starred" on-change="gamesListCtrl.onStarToggle({game: game, active: active})" dont-propagate-click="true"></star-button>
+      </span>
+      <a ui-sref="games.detail({id: game.id})" class="btn collection-list-item-btn collection-list-item-disclosure" title="View game details" stop-propagation><i class="fa fa-chevron-right"></i></a>
+    </div>
+  </div>
+  <div class="collection-empty card card-block text-muted" ng-show="gamesListCtrl.games.length < 1">
+    No games found. Why not <a href="" ng-click="gamesListCtrl.openAddGameForm($event)">add some</a>?
+  </div>
+</div>
+<nav class="navbar navbar-full navbar-light main-nav bottom hidden-lg-up">
+  <div class="btn-group">
+    <button 
+      type="button" 
+      class="btn btn-secondary" 
+      title="Mark as completed" 
+      ng-if="gamesListCtrl.category != 'completed'"
+      ng-disabled="!gamesListCtrl.hasSelection" 
+      ng-click="gamesListCtrl.markSelectionCompleted()">
+      <i class="fa fa-fw fa-check"></i>
+    </button>
+    <button 
+      class="btn btn-secondary" 
+      type="button" 
+      title="Move to backlog" 
+      ng-if="gamesListCtrl.category != 'backlog'"
+      ng-disabled="!gamesListCtrl.hasSelection" 
+      ng-click="gamesListCtrl.moveSelectionToBacklog()">
+      <i class="fa fa-fw fa-inbox"></i>
+    </button>
+  </div>
+  <div class="btn-group">
+    <button 
+      type="button"
+      class="btn btn-secondary"
+      title="Move to library"
+      ng-if="gamesListCtrl.category != 'library' && gamesListCtrl.category != 'backlog' && gamesListCtrl.category != 'completed'"
+      ng-disabled="!gamesListCtrl.hasSelection" 
+      ng-click="gamesListCtrl.moveSelectionToLibrary()">
+      <i class="fa fa-fw fa-university"></i>
+    </button>
+    <button 
+      class="btn btn-secondary"
+      type="button"
+      title="Move to wishlist"
+      ng-if="gamesListCtrl.category != 'wishlist'"
+      ng-disabled="!gamesListCtrl.hasSelection" 
+      ng-click="gamesListCtrl.moveSelectionToWishlist()">
+      <i class="fa fa-fw fa-gift"></i>
+    </button>
+  </div>
+  <div class="btn-group">
+    <button 
+      type="button" 
+      class="btn btn-secondary"
+       title="Delete" 
+       ng-disabled="!gamesListCtrl.hasSelection"  
+       ng-click="gamesListCtrl.removeSelection()">
+      <i class="fa fa-fw fa-trash"></i>
+    </button>
+  </div>
+</nav>

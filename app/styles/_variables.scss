@@ -1,0 +1,31 @@
+//bootstrap overrides
+$brand-primary: #a23a2a;
+$font-size-root: 14px;
+$input-border-focus: #afafaf;
+$card-spacer-x: 0.75rem;
+$zindex-dropdown: 1010;
+
+//screen size breakpoints
+$screen-md-min: 768px;
+$screen-sm-max: $screen-md-min - 1;
+$screen-lg-min: 992px;
+$screen-md-max: $screen-lg-min - 1;
+$screen-xl-min: 1200px;
+$screen-xl-max: $screen-xl-min - 1;
+
+//app chrome and layout
+$app-navbar-height: 49px;
+$app-drawer-width: 265px;
+$app-drawer-zindex: 1;
+$app-pane-zindex: 1000;
+$app-mask-zindex: 9999;
+$page-sidebar-width: 320px;
+
+$content-bg: #fff;
+$content-border-color: #ddd;
+$muted-bg: #f8f7f7;
+
+//sidebar
+$sidebar-bg: desaturate($brand-primary, 5%);
+$sidebar-header-bg: darken($sidebar-bg, 1%);
+$sidebar-color: lighten($sidebar-bg, 40%);

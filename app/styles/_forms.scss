@@ -1,0 +1,111 @@
+//temp fix for <select> height (bootstrap v4 will probably fix this)
+select.form-control {
+  height: 33.5px;
+}
+
+.dropdown-form {
+  width: 320px;
+
+  select.form-control,
+  textarea.form-control,
+  input.form-control,
+  .checkbox {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    margin-top: -1px;
+
+    &:focus {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  select.form-control,
+  textarea.form-control,
+  input.form-control {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  select.form-control {
+    appearance: none;
+    height: auto;
+    padding-right: 1.6rem;
+  }
+
+  .select-form-group {
+    position: relative;
+
+    &:after {
+      @extend .fa;
+      content: "\f0dc";
+      position: absolute;
+      z-index: 2;
+      top: 10px;
+      right: 8px;
+      color: #777;
+      pointer-events: none;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .checkbox {
+    margin-bottom: 0;
+    border-top: 1px solid $input-border-color;
+    border-bottom: 1px solid $input-border-color;
+
+    > label {
+      display: block;
+      line-height: 1.65;
+      padding: 0.5rem 0.75rem 0.5rem 2rem;
+
+      > input {
+        margin-right: .2rem;
+      }
+    }
+  }
+}
+
+.dropdown-form-heading {
+  padding: 5px;
+  background-color: $muted-bg;
+  border-bottom: 1px solid $input-border-color;
+  @include clearfix();
+  @include border-top-radius($border-radius);
+
+  &-btn {
+    min-width: 65px;
+  }
+
+  &-text {
+    padding: $btn-padding-y-sm $btn-padding-x-sm;
+    color: #777;
+    text-align: center;
+  }
+}
+
+.text-content-editor-content {
+  padding: $input-padding-y $input-padding-x;
+  cursor: pointer;
+  min-height: 200px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+
+  &:hover {
+    border-color: #eee;
+  }
+}
+
+.text-content-editor-textarea {
+  min-height: 200px;
+}
+
+@media(max-width: $screen-sm-max) {
+  .dropdown-form {
+    width: auto;
+  }
+}

@@ -1,0 +1,23 @@
+<modal-dialog modal-title="Welcome!" close="closeModal()">
+  <div class="modal-body">
+    <p>
+      backlogr is an experimental web app built with angular.js for tracking and managing your 
+      video game collection and backlog. At this point in time, it is <strong>not meant to be a 
+      production-ready application</strong> for use by the general population. With this in mind, 
+      please do not rely on it to be a stable location for storing your games, as it could change 
+      or be taken down at any time, with no warning.
+    </p>
+    <p>
+      Additionally, this app uses the browser's localStorage service to store all user data, which 
+      has a limit on the total amount of data that can be stored. While unlikely, its possible you 
+      may reach this limit, at which point the app will not be able to correctly save your changes.  
+    </p>
+    <p>
+      For more information about this project, please check out the 
+      <a href="" ui-sref="about" ng-click="closeModal()">about page</a>.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" ng-click="closeModal()">Close</button>
+  </div>
+</modal-dialog>

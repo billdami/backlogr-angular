@@ -1,0 +1,228 @@
+html.app,
+body.app {
+  height: 100%;
+}
+
+body.app {
+  overflow: hidden;
+}
+
+.app-root {
+  display: flex;
+  min-height: 100%;
+}
+
+.app-loading-mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: $app-mask-zindex;
+  background: $sidebar-bg;
+
+  &.ng-hide {
+    transition: 0.2s linear all;
+    opacity: 0;
+  }
+}
+
+.app-loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -18px;
+  text-align: center;
+
+  i {
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 4px;
+    width: 5px;
+    height: 24px;
+    background: #fff;
+    opacity: 0;
+    animation: pulse ease-in-out 1s infinite alternate;
+
+    &:nth-child(1) {
+      margin-left: 0;
+      animation-delay: 0s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    &:nth-child(4) {
+      margin-left: 6px;
+      transform: rotateZ(-15deg);
+      animation-delay: 0.6s;
+    }
+  }
+}
+
+.app-drawer {
+  position: absolute;
+  width: $app-drawer-width;
+  z-index: $app-drawer-zindex;
+}
+
+.app-content-pane-mask {
+  position: absolute;
+  z-index: $app-pane-zindex + 1;
+  top: 0;
+  left: $app-drawer-width;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.app-content-pane {
+  flex: 1;
+  transform: translate3d(0,0,0);
+  transition: transform .3s;
+  position: relative;
+  z-index: $app-pane-zindex;
+  background: $content-bg;
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
+
+  &.is-open-left {
+    transform: translate3d($app-drawer-width, 0, 0);
+  }
+}
+
+.app-content-pane-inner {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-flow: column;
+}
+
+.app-content {
+  flex: 1;
+  position: relative;
+
+  &-muted {
+    background: $muted-bg;
+  }
+}
+
+.main-nav {
+  background: $content-bg;
+  border-bottom: 1px solid $content-border-color;
+
+  &.bottom {
+    border-bottom: 0;
+    border-top: 1px solid $content-border-color;
+  }
+}
+
+.navbar {
+  height: $app-navbar-height;
+}
+
+.navbar-brand img {
+  height: 24px;
+}
+
+.page-content {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.page-text-content {
+  max-width: 960px;
+}
+
+.page-sub-header {
+  padding: 10px;
+  background: $muted-bg;
+  color: #555;
+  border-top: 1px solid $content-border-color;
+  border-bottom: 1px solid $content-border-color;
+}
+
+.page-sidebar {
+  margin: 10px;
+}
+
+.page-header {
+  padding: 10px;
+  margin-bottom: 10px;
+  background: $muted-bg;
+  border-bottom: 1px solid $content-border-color;
+  color: #555;
+
+  &-title {
+    font-size: 1.7rem;
+  }
+
+  &-subtitle {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: #999;
+  }
+
+  &-img-ct {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 3px;
+    background: #fff;
+    border: 1px solid $content-border-color;
+  }
+
+  &-img {
+    max-height: 100px;
+  }
+
+  .star-button {
+    font-size: $font-size-root;
+    vertical-align: middle;
+    margin-top: -4px;
+  }
+}
+
+//desktop resets
+@media(min-width: $screen-lg-min) {
+  .app-drawer {
+    z-index: initial;
+  }
+
+  .app-content-pane-mask {
+    display: none !important;
+  }
+
+  .app-content-pane {
+    margin-left: $app-drawer-width;
+    transition: none;
+    //z-index: initial;
+
+    &.is-open-left {
+      transform: translate3d(0,0,0);
+    }
+  }
+}
+
+@media(min-width: $screen-xl-min) {
+  .has-sidebar {
+    & .page-header,
+    & .page-content {
+      padding-right: $page-sidebar-width + 30px;
+    }
+  }
+
+  .page-sidebar {
+    width: $page-sidebar-width;
+    position: absolute;
+    top: 45px;
+    right: 10px;
+  }
+}
