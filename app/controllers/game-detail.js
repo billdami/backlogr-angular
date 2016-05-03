@@ -1,6 +1,6 @@
 angular.module('backlogr').controller('GameDetailController', [
-  'Games', '$state', '$stateParams', '$window', 
-  function(Games, $state, $stateParams, $window) {
+  'Games', '$state', '$stateParams', '$window', 'Modal',
+  function(Games, $state, $stateParams, $window, Modal) {
     var self = this;
     
     self.gamesService = Games;
@@ -61,8 +61,16 @@ angular.module('backlogr').controller('GameDetailController', [
     };
 
     self.remove = function() {
-      Games.remove(self.game, true);
-      self.backToList();
+      Modal.showConfirm({
+        confirmTitle: "Delete game",
+        bodyText: "Are you sure you want to delete \"" + self.game.gameName + "\"?",
+        confirmBtnText: "Delete",
+        cancelBtnText: "Cancel",
+        onConfirm: angular.bind(self, function() {
+          Games.remove(self.game, true);
+          self.backToList();
+        })
+      });      
     };
 
     self.backToList = function() {

@@ -23,6 +23,42 @@
 }
 
 //
+// slide-in-down
+//
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slide-in-down {
+  animation-name: slideInDown;
+}
+
+//
+// slide-out-up
+//
+@keyframes slideOutUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.slide-out-up {
+  animation-name: slideOutUp;
+}
+
+//
 // slide-in-right
 //
 @keyframes slideInRight {

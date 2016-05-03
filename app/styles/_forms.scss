@@ -26,10 +26,10 @@ select.form-control {
   input.form-control {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    appearance: none;
   }
 
   select.form-control {
-    appearance: none;
     height: auto;
     padding-right: 1.6rem;
   }

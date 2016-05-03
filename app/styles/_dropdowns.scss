@@ -4,16 +4,29 @@
 }
 
 .uib-dropdown-open .dropdown-menu.animated {
-  @extend .flip-in-x;
+  @extend .slide-in-down;
 }
 
 .uib-dropdown-open-remove .dropdown-menu.animated {
   display: block !important;
-  @extend .flip-out-x;
+  @extend .slide-out-up;
 }
 
 .dropdown-menu-fs {
   padding: 0;
+}
+
+//flip animations on desktop screens (causes issues on mobile)
+@media(min-width: $screen-lg-min) {
+  .uib-dropdown-open .dropdown-menu.animated {
+    animation-name: flipInX;
+    backface-visibility: visible !important;
+  }
+
+  .uib-dropdown-open-remove .dropdown-menu.animated {
+    animation-name: flipOutX;
+    backface-visibility: visible !important;
+  }
 }
 
 //fullscreen dropdowns for mobile

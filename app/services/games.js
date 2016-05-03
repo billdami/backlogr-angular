@@ -36,7 +36,7 @@ angular.module('backlogr').factory('Games', [
 
       init: function() {
         this.games = this._fetchGamesFromStorage();
-        this.orderByProp = LocalStorage.get('gamesOrderByProp') || ' gameName';
+        this.orderByProp = LocalStorage.get('gamesOrderByProp') || 'gameName';
         this.orderDesc = LocalStorage.get('gamesOrderDesc') || false;
         this.updateSorting();
         return this; 

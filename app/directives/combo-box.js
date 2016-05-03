@@ -60,13 +60,14 @@ angular.module('comboBox', [])
     };
 
     self.selectItem = function(item, closeMenu) {
+      var origInputVal = self.inputValue;
       self.internalModelChange = true;
       self.selectedItem = item;
       self.model = item;
       self.focusedItem = null;
       self.inputValue = item[self.modelLabel];
 
-      if(self.onInput) {
+      if(self.onInput && origInputVal.toUpperCase().trim() !== self.inputValue.toUpperCase().trim()) {
         self.onInput({term: self.inputValue});
       }
 
@@ -109,6 +110,12 @@ angular.module('comboBox', [])
     self.selectFocusedItem = function(event) {
       if(self.focusedItem) {
         self.selectItem(self.focusedItem, true);
+
+        if(event) {
+          event.preventDefault();
+        }
+      } else if(self.getModel() && self.isOpen) {
+        self.closeMenu();
 
         if(event) {
           event.preventDefault();

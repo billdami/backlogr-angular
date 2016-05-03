@@ -100,9 +100,9 @@ body.app {
 .app-content-pane-inner {
   position: absolute;
   display: flex;
+  flex-flow: column;
   height: 100%;
   width: 100%;
-  flex-flow: column;
 }
 
 .app-content {
