@@ -18,13 +18,13 @@ angular.module('backlogr').controller('AppController', [
         Modal.show({
           templateUrl: 'modals/welcome.html',
           controllerAs: 'welcomeCtrl',
-          controller: function($scope, close) {
+          controller: ['$scope', 'close', function($scope, close) {
             $scope.closeModal = function() {
               //update local storage flag
               LocalStorage.set('welcomeShown', true);
               close();
             };
-          }
+          }]
         });
       }, 100);
     }

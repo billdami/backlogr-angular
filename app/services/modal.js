@@ -159,7 +159,8 @@ angular.module('backlogr').factory('Modal', [
       showConfirm: function(opts) {
         return this.show({
           templateUrl: 'modals/confirm.html',
-          controller: function($scope, confirmTitle, bodyText, confirmBtnText, cancelBtnText, close) {
+          controller: ['$scope', 'confirmTitle', 'bodyText', 'confirmBtnText', 'cancelBtnText', 'close',
+            function($scope, confirmTitle, bodyText, confirmBtnText, cancelBtnText, close) {
             $scope.confirmTitle = confirmTitle;
             $scope.bodyText = bodyText;
             $scope.confirmBtnText = confirmBtnText;
@@ -180,7 +181,7 @@ angular.module('backlogr').factory('Modal', [
 
               close();
             };
-          },
+          }],
           inputs: {
             confirmTitle: opts.confirmTitle || "Confirm Action",
             bodyText: opts.bodyText || "Are you sure?",
