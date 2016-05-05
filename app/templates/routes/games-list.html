@@ -74,14 +74,27 @@
       </button>
     </div>
     <div class="btn-group hidden-md-down" uib-dropdown>
-      <button type="button" class="btn btn-secondary" ng-disabled="!gamesListCtrl.hasSelection" title="More action" uib-dropdown-toggle>
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        title="More action" 
+        ng-disabled="!gamesListCtrl.hasSelection" 
+        uib-dropdown-toggle>
         <i class="fa fa-fw fa-ellipsis-h"></i>
       </button>
       <div class="dropdown-menu" role="menu" uib-dropdown-menu>
-        <button class="dropdown-item" type="button" ng-disabled="!gamesListCtrl.hasSelection" ng-click="gamesListCtrl.starSelection()">
+        <button 
+          class="dropdown-item" 
+          type="button" 
+          ng-disabled="!gamesListCtrl.hasSelection" 
+          ng-click="gamesListCtrl.starSelection()">
           <i class="fa fa-fw fa-star"></i> Add star
         </button>
-        <button class="dropdown-item" type="button" ng-disabled="!gamesListCtrl.hasSelection" ng-click="gamesListCtrl.unstarSelection()">
+        <button 
+          class="dropdown-item" 
+          type="button" 
+          ng-disabled="!gamesListCtrl.hasSelection" 
+          ng-click="gamesListCtrl.unstarSelection()">
           <i class="fa fa-fw fa-star-o"></i> Remove star
         </button>
       </div>
@@ -146,11 +159,17 @@
       ng-click="gamesListCtrl.onGameClick(game, $event)"
       ng-dblclick="gamesListCtrl.openDetail(game)"
       scroll-into-view="game.lastFocused">
-      <div class="collection-list-item-selection" ng-click="gamesListCtrl.onGameSelClick(game, $event)" stop-propagation>
+      <div 
+        class="collection-list-item-selection" 
+        ng-click="gamesListCtrl.onGameSelClick(game, $event)" 
+        stop-propagation>
         <i class="fa fa-square-o collection-list-item-selection-icon"></i>
       </div>
       <div class="collection-list-item-thumb-ct">
-        <img ng-if="game.hasImg" ng-src="{{::gamesListCtrl.gamesService.getThumbUrl(game)}}" class="collection-list-item-thumb-img">
+        <img 
+          ng-if="game.hasImg" 
+          ng-src="{{::gamesListCtrl.gamesService.getThumbUrl(game)}}" 
+          class="collection-list-item-thumb-img">
       </div>
       <div class="collection-list-item-info">
         <div class="collection-list-item-text">
@@ -159,9 +178,19 @@
         <div class="text-muted collection-list-item-text">{{::game.platformName }}</div>
       </div>
       <span class="collection-list-item-ctrls">
-        <star-button active="game.starred" on-change="gamesListCtrl.onStarToggle({game: game, active: active})" dont-propagate-click="true"></star-button>
+        <star-button 
+          active="game.starred" 
+          on-change="gamesListCtrl.onStarToggle({game: game, active: active})" 
+          dont-propagate-click="true">
+        </star-button>
       </span>
-      <a ui-sref="games.detail({id: game.id})" class="btn collection-list-item-btn collection-list-item-disclosure" title="View game details" stop-propagation><i class="fa fa-chevron-right"></i></a>
+      <a 
+        ui-sref="games.detail({id: game.id})" 
+        title="View game details"
+        class="btn collection-list-item-btn collection-list-item-disclosure"  
+        stop-propagation>
+        <i class="fa fa-chevron-right"></i>
+      </a>
     </div>
   </div>
   <div class="collection-empty card card-block text-muted" ng-show="gamesListCtrl.games.length < 1">

@@ -70,7 +70,10 @@
       <div class="page-header-text">
         <h1 class="page-header-title">
           {{ gameCtrl.game.gameName }}
-          <star-button active="gameCtrl.game.starred" on-change="gameCtrl.onStarToggle({active: active})"></star-button>
+          <star-button 
+            active="gameCtrl.game.starred" 
+            on-change="gameCtrl.onStarToggle({active: active})">
+          </star-button>
         </h1>
         <h3 class="page-header-subtitle">{{ gameCtrl.game.platformName }}</h3>
       </div>

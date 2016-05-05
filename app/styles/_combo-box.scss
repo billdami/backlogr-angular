@@ -36,7 +36,7 @@
     background-color: $list-group-hover-bg;
 
     &.active {
-      background-color: $list-group-active-bg;
+      background-color: darken($list-group-active-bg, 5%);
     }
   }
 }
